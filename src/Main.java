@@ -18,7 +18,6 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // new GameScreen();
-        // System.out.print("test the main");
+  
     }
 }

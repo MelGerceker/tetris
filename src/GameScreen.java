@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class GameScreen extends JPanel implements Runnable {
 
@@ -12,6 +13,7 @@ public class GameScreen extends JPanel implements Runnable {
     public static final int HEIGHT = 720;
     final int FPS = 60;
     Thread gameThread;
+    PlayAreaManager pm;
 
     public GameScreen() {
 
@@ -20,7 +22,7 @@ public class GameScreen extends JPanel implements Runnable {
         this.setBackground(Color.black);
         this.setLayout(null);
 
-        // System.out.print("test the game screen");
+        pm = new PlayAreaManager();
 
     }
 
@@ -55,10 +57,13 @@ public class GameScreen extends JPanel implements Runnable {
     }
 
     private void update() {
-
+        pm.update();
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D) g;
+        pm.draw(g2);
     }
 }
