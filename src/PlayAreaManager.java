@@ -7,10 +7,13 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import src.Tetris_Pieces.Block;
+import src.Tetris_Pieces.Mino_Bar;
 import src.Tetris_Pieces.Mino_L1;
 import src.Tetris_Pieces.Mino_L2;
 import src.Tetris_Pieces.Mino_Square;
 import src.Tetris_Pieces.Mino_T;
+import src.Tetris_Pieces.Mino_Z1;
+import src.Tetris_Pieces.Mino_Z2;
 import src.Tetris_Pieces.TetroMino;
 
 public class PlayAreaManager {
@@ -42,7 +45,7 @@ public class PlayAreaManager {
         MINO_START_Y = top_y + Block.SIZE;
 
         // Set the starting Mino
-        currentMino = new Mino_Square();
+        currentMino = new Mino_Bar();
         currentMino.setXY(MINO_START_X, MINO_START_Y);
     }
 

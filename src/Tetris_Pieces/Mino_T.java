@@ -12,12 +12,13 @@ public class Mino_T extends TetroMino{
         // b[0] is the rotation anchor
 
         //   [1]
-        //[2][0][3]
+        //[0][2][3]
 
+        //is this centered?
         offsets[0] = new Point(0, 0); // anchor
-        offsets[1] = new Point(0, -1); 
-        offsets[2] = new Point(-1, 0); 
-        offsets[3] = new Point(1, 0); 
+        offsets[1] = new Point(1, -1); 
+        offsets[2] = new Point(1, 0); 
+        offsets[3] = new Point(2, 0); 
     }
 
     @Override
