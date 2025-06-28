@@ -16,9 +16,9 @@ public abstract class TetroMino {
     // public Block[] tempB = new Block[4];
 
     public TetroMino() {
-        for (int i = 0; i < 4; i++) {
-            offsets[i] = new Point(0, 0);
-        }
+        // for (int i = 0; i < 4; i++) {
+        // offsets[i] = new Point(0, 0);
+        // }
     }
 
     public void create(Color c) {
