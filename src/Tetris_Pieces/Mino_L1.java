@@ -9,11 +9,11 @@ public class Mino_L1 extends TetroMino {
         create(Color.orange);
 
         // Shape layout
-        // b[0] (!) is the rotation anchor
+        // b[0] is the rotation anchor
 
-        // o
-        // o !
-        // o o
+        //[1]
+        //[0]
+        //[2][3]
 
         offsets[0] = new Point(0, 0); // anchor
         offsets[1] = new Point(0, -1); // above
@@ -23,10 +23,7 @@ public class Mino_L1 extends TetroMino {
 
     @Override
     public void rotateRight() {
-        // for (var p : offsets) {
-        // int temp = p.x;
-        // p.x = -p.y;
-        // p.y = temp;
-        // }
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'rotateRight'");
     }
 }
