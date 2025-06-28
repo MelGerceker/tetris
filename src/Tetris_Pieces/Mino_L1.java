@@ -6,23 +6,30 @@ public class Mino_L1 extends TetroMino {
 
     public Mino_L1() {
         create(Color.orange);
-    }
 
-    public void setXY(int x, int y) {
+        // Shape layout
+        // b[0] (!) is the rotation anchor
+
         // o
         // o !
         // o o
 
-        // b[0] is the one with the exclamation for rotation
+        offsets[0].x = 0;
+        offsets[0].y = 0; // center
+        offsets[1].x = 0;
+        offsets[1].y = -1; // above
+        offsets[2].x = 0;
+        offsets[2].y = 1; // below
+        offsets[3].x = 1;
+        offsets[3].y = 1; // bottom-right
+    }
 
-        b[0].x = x;
-        b[0].y = y;
-        b[1].x = b[0].x;
-        b[1].y = b[0].y - Block.SIZE;
-        b[2].x = b[0].x;
-        b[2].y = b[0].y + Block.SIZE;
-        b[3].x = b[0].x + Block.SIZE;
-        b[3].y = b[0].y + Block.SIZE;
-
+    @Override
+    public void rotateRight() {
+        //for (var p : offsets) {
+          //  int temp = p.x;
+            //p.x = -p.y;
+           // p.y = temp;
+        //}
     }
 }
