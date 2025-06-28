@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import src.PlayAreaManager;
+
 public abstract class TetroMino {
 
     public Block[] b = new Block[4];
     protected Point[] offsets = new Point[4];
+
+    int autoDropCounter = 0;
 
     // public Block[] tempB = new Block[4];
 
@@ -36,6 +40,16 @@ public abstract class TetroMino {
     }
 
     public void update() {
+        autoDropCounter++;
+        if (autoDropCounter == PlayAreaManager.dropInterval) {
+            // the piece goes down
+            b[0].y += Block.SIZE;
+            b[1].y += Block.SIZE;
+            b[2].y += Block.SIZE;
+            b[3].y += Block.SIZE;
+            autoDropCounter = 0;
+
+        }
 
     }
 

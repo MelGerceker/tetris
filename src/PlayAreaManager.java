@@ -25,6 +25,8 @@ public class PlayAreaManager {
     final int MINO_START_X;
     final int MINO_START_Y;
 
+    public static int dropInterval = 60;
+
     public PlayAreaManager() {
 
         // Main Play Area Frame
