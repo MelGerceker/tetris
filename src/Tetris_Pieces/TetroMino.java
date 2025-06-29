@@ -12,9 +12,12 @@ public abstract class TetroMino {
     public Block[] b = new Block[4];
     protected Point[] offsets = new Point[4];
 
-    int autoDropCounter = 0;
+    public int anchorX;
+    public int anchorY;
 
-    // public Block[] tempB = new Block[4];
+    public int autoDropCounter = 0;
+
+    public int direction = 1; // 4 directions
 
     public TetroMino() {
 
@@ -31,6 +34,8 @@ public abstract class TetroMino {
     }
 
     public void setXY(int x, int y) {
+        anchorX = x;
+        anchorY = y;
         for (int i = 0; i < 4; i++) {
             b[i].x = x + offsets[i].x * Block.SIZE;
             b[i].y = y + offsets[i].y * Block.SIZE;
@@ -38,62 +43,126 @@ public abstract class TetroMino {
 
     }
 
-    public void updateXY(int direction) {
+    // public void updateXY(int direction) {
+    // }
 
+    public void rotateRight() {
+        // Step 1: Backup current block positions
+        Point[] originalOffsets = new Point[4];
+        for (int i = 0; i < 4; i++) {
+            originalOffsets[i] = new Point(offsets[i]);
+        }
+
+        int previousDirection = direction;
+
+        // Step 2: Try applying new direction
+        direction++;
+        if (direction > 4) {
+            direction = 1;
+        }
+
+        applyRotation(direction);
+
+        // Step 3: (In the future, check for collision here)
+        // if (hasCollision()) {
+        // direction = previousDirection;
+        // for (int i = 0; i < 4; i++) {
+        // offsets[i] = originalOffsets[i];
+        // }
+        // setXY(anchorX, anchorY);
+        // }
     }
 
-    public void update() {
-        // Movement
-        if (KeyHandler.upPressed)
-
-        {
-
+    private void applyRotation(int dir) {
+        switch (dir) {
+            case 1:
+                setDirection1();
+                break;
+            case 2:
+                setDirection2();
+                break;
+            case 3:
+                setDirection3();
+                break;
+            case 4:
+                setDirection4();
+                break;
+            default:
+                break;
         }
+    }
 
-        if (KeyHandler.downPressed) {
-            b[0].y += Block.SIZE;
-            b[1].y += Block.SIZE;
-            b[2].y += Block.SIZE;
-            b[3].y += Block.SIZE;
+    protected abstract void setDirection1();
 
-            // when moved down, autoDropCounter is reset
-            autoDropCounter = 0;
+    protected abstract void setDirection2();
 
-            KeyHandler.downPressed = false;
+    protected abstract void setDirection3();
 
-        }
-        if (KeyHandler.leftPressed) {
-            b[0].x -= Block.SIZE;
-            b[1].x -= Block.SIZE;
-            b[2].x -= Block.SIZE;
-            b[3].x -= Block.SIZE;
+    protected abstract void setDirection4();
 
-            KeyHandler.leftPressed = false;
-
-        }
-        if (KeyHandler.rightPressed) {
-            b[0].x += Block.SIZE;
-            b[1].x += Block.SIZE;
-            b[2].x += Block.SIZE;
-            b[3].x += Block.SIZE;
-
-            KeyHandler.rightPressed = false;
-
-        }
-
+    public void updateAutoDrop() {
         autoDropCounter++;
-        if (autoDropCounter == PlayAreaManager.dropInterval) {
-            // the piece goes down
-            b[0].y += Block.SIZE;
-            b[1].y += Block.SIZE;
-            b[2].y += Block.SIZE;
-            b[3].y += Block.SIZE;
+        if (autoDropCounter >= PlayAreaManager.dropInterval) {
+            for (Block block : b) {
+                block.y += Block.SIZE;
+            }
             autoDropCounter = 0;
-
         }
-
     }
 
+    /*
+     * public void update() {
+     * // Movement
+     * if (KeyHandler.upPressed) {
+     * currentMino.rotateRight();
+     * KeyHandler.upPressed = false;
+     * }
+     * 
+     * if (KeyHandler.downPressed) {
+     * b[0].y += Block.SIZE;
+     * b[1].y += Block.SIZE;
+     * b[2].y += Block.SIZE;
+     * b[3].y += Block.SIZE;
+     * 
+     * // when moved down, autoDropCounter is reset
+     * autoDropCounter = 0;
+     * 
+     * KeyHandler.downPressed = false;
+     * 
+     * }
+     * if (KeyHandler.leftPressed) {
+     * b[0].x -= Block.SIZE;
+     * b[1].x -= Block.SIZE;
+     * b[2].x -= Block.SIZE;
+     * b[3].x -= Block.SIZE;
+     * 
+     * KeyHandler.leftPressed = false;
+     * 
+     * }
+     * if (KeyHandler.rightPressed) {
+     * b[0].x += Block.SIZE;
+     * b[1].x += Block.SIZE;
+     * b[2].x += Block.SIZE;
+     * b[3].x += Block.SIZE;
+     * 
+     * KeyHandler.rightPressed = false;
+     * 
+     * }
+     * 
+     * autoDropCounter++;
+     * if (autoDropCounter == PlayAreaManager.dropInterval) {
+     * // the piece goes down
+     * b[0].y += Block.SIZE;
+     * b[1].y += Block.SIZE;
+     * b[2].y += Block.SIZE;
+     * b[3].y += Block.SIZE;
+     * autoDropCounter = 0;
+     * 
+     * }
+     * 
+     * }
+     * 
+     */
     public void draw(Graphics2D g2) {
         int margin = 2;
         for (int i = 0; i < 4; i++) {
@@ -105,7 +174,5 @@ public abstract class TetroMino {
                     Block.SIZE - (margin * 2));
         }
     }
-
-    public abstract void rotateRight();
 
 }

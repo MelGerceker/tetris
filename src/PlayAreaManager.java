@@ -45,14 +45,13 @@ public class PlayAreaManager {
         MINO_START_Y = top_y + Block.SIZE;
 
         // Set the starting Mino
-        currentMino = new Mino_Bar();
+        currentMino = new Mino_L1();
         currentMino.setXY(MINO_START_X, MINO_START_Y);
     }
 
     public void update() {
-
-        currentMino.update();
-
+        MinoController.handleInput(currentMino);
+        currentMino.updateAutoDrop(); // NEW
     }
 
     public void draw(Graphics2D g2) {
