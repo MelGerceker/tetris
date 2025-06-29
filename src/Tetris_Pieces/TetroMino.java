@@ -43,11 +43,9 @@ public abstract class TetroMino {
 
     }
 
-    // public void updateXY(int direction) {
-    // }
-
     public void rotateRight() {
-        // Step 1: Backup current block positions
+        // Backup current block positions
+        // Used for if collision is detected and rotation can not be done.
         Point[] originalOffsets = new Point[4];
         for (int i = 0; i < 4; i++) {
             originalOffsets[i] = new Point(offsets[i]);
@@ -55,7 +53,6 @@ public abstract class TetroMino {
 
         int previousDirection = direction;
 
-        // Step 2: Try applying new direction
         direction++;
         if (direction > 4) {
             direction = 1;
@@ -63,14 +60,8 @@ public abstract class TetroMino {
 
         applyRotation(direction);
 
-        // Step 3: (In the future, check for collision here)
-        // if (hasCollision()) {
-        // direction = previousDirection;
-        // for (int i = 0; i < 4; i++) {
-        // offsets[i] = originalOffsets[i];
-        // }
-        // setXY(anchorX, anchorY);
-        // }
+        // TODO: check for collision
+    
     }
 
     private void applyRotation(int dir) {
@@ -110,59 +101,6 @@ public abstract class TetroMino {
         }
     }
 
-    /*
-     * public void update() {
-     * // Movement
-     * if (KeyHandler.upPressed) {
-     * currentMino.rotateRight();
-     * KeyHandler.upPressed = false;
-     * }
-     * 
-     * if (KeyHandler.downPressed) {
-     * b[0].y += Block.SIZE;
-     * b[1].y += Block.SIZE;
-     * b[2].y += Block.SIZE;
-     * b[3].y += Block.SIZE;
-     * 
-     * // when moved down, autoDropCounter is reset
-     * autoDropCounter = 0;
-     * 
-     * KeyHandler.downPressed = false;
-     * 
-     * }
-     * if (KeyHandler.leftPressed) {
-     * b[0].x -= Block.SIZE;
-     * b[1].x -= Block.SIZE;
-     * b[2].x -= Block.SIZE;
-     * b[3].x -= Block.SIZE;
-     * 
-     * KeyHandler.leftPressed = false;
-     * 
-     * }
-     * if (KeyHandler.rightPressed) {
-     * b[0].x += Block.SIZE;
-     * b[1].x += Block.SIZE;
-     * b[2].x += Block.SIZE;
-     * b[3].x += Block.SIZE;
-     * 
-     * KeyHandler.rightPressed = false;
-     * 
-     * }
-     * 
-     * autoDropCounter++;
-     * if (autoDropCounter == PlayAreaManager.dropInterval) {
-     * // the piece goes down
-     * b[0].y += Block.SIZE;
-     * b[1].y += Block.SIZE;
-     * b[2].y += Block.SIZE;
-     * b[3].y += Block.SIZE;
-     * autoDropCounter = 0;
-     * 
-     * }
-     * 
-     * }
-     * 
-     */
     public void draw(Graphics2D g2) {
         int margin = 2;
         for (int i = 0; i < 4; i++) {
