@@ -66,7 +66,28 @@ public abstract class TetroMino {
 
         applyRotation(direction);
 
+        // Calculate simulated block position
+        Point[] simulated = new Point[4];
+        for (int i = 0; i < 4; i++) {
+            simulated[i] = new Point(
+                    anchorX + offsets[i].x * Block.SIZE,
+                    anchorY + offsets[i].y * Block.SIZE);
+        }
+
         // TODO: check for collision
+        // Check if simulated position collides
+        Collision tempCollision = new Collision(null);
+        if (tempCollision.checkRotationalCollision(simulated)) {
+
+            // Revert collision
+            direction = previousDirection;
+            for (int i = 0; i < 4; i++) {
+                offsets[i] = originalOffsets[i];
+            }
+            setXY(anchorX, anchorY);
+        } else {
+            // Rotation is valid, setXY is already applied within setDirection()
+        }
 
     }
 

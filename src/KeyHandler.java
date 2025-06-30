@@ -9,13 +9,6 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_UP) {
@@ -31,11 +24,26 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         }
         if (code == KeyEvent.VK_ESCAPE) {
-            if (pausePressed) {
-                pausePressed = false;
-            } else {
-                pausePressed = true;
-            }
+            pausePressed = !pausePressed;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+        int code = e.getKeyCode();
+
+        if (code == KeyEvent.VK_UP) {
+            upPressed = false;
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            leftPressed = false;
+        }
+        if (code == KeyEvent.VK_DOWN) {
+            downPressed = false;
+        }
+        if (code == KeyEvent.VK_RIGHT) {
+            rightPressed = false;
         }
     }
 

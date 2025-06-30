@@ -1,6 +1,9 @@
 package src;
 
 import src.Tetris_Pieces.TetroMino;
+
+import java.awt.Point;
+
 import src.Tetris_Pieces.Block;
 
 public class Collision {
@@ -27,7 +30,7 @@ public class Collision {
     public CollisionResult checkMovementCollision(TetroMino mino) {
         CollisionResult result = new CollisionResult();
         for (Block block : mino.b) {
-            
+
             // Edges are used to account for blocks where the anchor is not in the edges.
             int leftEdge = block.x - Block.SIZE;
             int rightEdge = block.x + Block.SIZE;
@@ -47,7 +50,15 @@ public class Collision {
         return result;
     }
 
-    public void checkRotationalCollision() {
+    public boolean checkRotationalCollision(Point[] testPositions) {
+        for (Point p : testPositions) {
+            if (p.x < PlayAreaManager.left_x ||
+                    p.x + Block.SIZE > PlayAreaManager.right_x ||
+                    p.y + Block.SIZE > PlayAreaManager.bottom_y) {
+                return true;
+            }
+        }
+        return false;
 
     }
 
