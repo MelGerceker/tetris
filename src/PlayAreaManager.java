@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.Random;
 
 import src.Tetris_Pieces.Block;
 import src.Tetris_Pieces.Mino_Bar;
@@ -45,8 +46,40 @@ public class PlayAreaManager {
         MINO_START_Y = top_y + Block.SIZE;
 
         // Set the starting Mino
-        currentMino = new Mino_L2();
+        currentMino = pickRandom();
         currentMino.setXY(MINO_START_X, MINO_START_Y);
+    }
+
+    private TetroMino pickRandom() {
+
+        TetroMino mino = null;
+        int i = new Random().nextInt(6);
+
+        // set to 6 for now since L2 does not work fully yet.
+
+        switch (i) {
+            case 0:
+                mino = new Mino_L1();
+                break;
+            case 1:
+                mino = new Mino_Square();
+                break;
+            case 2:
+                mino = new Mino_Z1();
+                break;
+            case 3:
+                mino = new Mino_Z2();
+                break;
+            case 4:
+                mino = new Mino_Bar();
+                break;
+            case 5:
+                mino = new Mino_T();
+                break;
+            // case 6: mino = new Mino_L2(); break;
+
+        }
+        return mino;
     }
 
     public void update() {
