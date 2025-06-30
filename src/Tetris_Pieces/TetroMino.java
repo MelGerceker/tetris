@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import src.Collision;
+import src.CollisionResult;
 import src.KeyHandler;
 import src.PlayAreaManager;
 
@@ -65,7 +67,7 @@ public abstract class TetroMino {
         applyRotation(direction);
 
         // TODO: check for collision
-    
+
     }
 
     private void applyRotation(int dir) {
@@ -97,9 +99,19 @@ public abstract class TetroMino {
 
     public void updateAutoDrop() {
         autoDropCounter++;
+
         if (autoDropCounter >= PlayAreaManager.dropInterval) {
-            for (Block block : b) {
-                block.y += Block.SIZE;
+
+            // Check for bottom collision
+            Collision collision = new Collision(this);
+            CollisionResult result = collision.checkMovementCollision(this);
+
+            if (!result.bottom) {
+                for (Block block : b) {
+                    block.y += Block.SIZE;
+                }
+            } else {
+                // TODO: lock piece here
             }
             autoDropCounter = 0;
         }

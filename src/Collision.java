@@ -26,18 +26,20 @@ public class Collision {
 
     public CollisionResult checkMovementCollision(TetroMino mino) {
         CollisionResult result = new CollisionResult();
-
         for (Block block : mino.b) {
-            int x = block.x;
-            int y = block.y;
+            
+            // Edges are used to account for blocks where the anchor is not in the edges.
+            int leftEdge = block.x - Block.SIZE;
+            int rightEdge = block.x + Block.SIZE;
+            int bottomEdge = block.y + Block.SIZE;
 
-            if (x - Block.SIZE < PlayAreaManager.left_x) {
+            if (leftEdge < PlayAreaManager.left_x) {
                 result.left = true;
             }
-            if (x + Block.SIZE > PlayAreaManager.right_x) {
+            if (rightEdge >= PlayAreaManager.right_x) {
                 result.right = true;
             }
-            if (y + Block.SIZE > PlayAreaManager.bottom_y) {
+            if (bottomEdge >= PlayAreaManager.bottom_y) {
                 result.bottom = true;
             }
         }
