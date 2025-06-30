@@ -21,9 +21,11 @@ public abstract class TetroMino {
 
     public int direction = 1; // 4 directions
 
-    public boolean leftCollision;
+    boolean leftCollision;
     boolean rightCollision;
     boolean bottomCollision;
+
+    public boolean active = true;
 
     public TetroMino() {
 
@@ -74,7 +76,6 @@ public abstract class TetroMino {
                     anchorY + offsets[i].y * Block.SIZE);
         }
 
-        // TODO: check for collision
         // Check if simulated position collides
         Collision tempCollision = new Collision(null);
         if (tempCollision.checkRotationalCollision(simulated)) {
@@ -133,6 +134,7 @@ public abstract class TetroMino {
                 }
             } else {
                 // TODO: lock piece here
+                active = false;
             }
             autoDropCounter = 0;
         }
