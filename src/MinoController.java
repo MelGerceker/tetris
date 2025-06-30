@@ -6,6 +6,10 @@ import src.Tetris_Pieces.TetroMino;
 public class MinoController {
 
     public static void handleInput(TetroMino currentMino) {
+
+        Collision collision = new Collision(currentMino);
+        CollisionResult result = collision.checkMovementCollision(currentMino);
+
         // Rotate
         if (KeyHandler.upPressed) {
             currentMino.anchorX = currentMino.b[0].x;
@@ -15,7 +19,7 @@ public class MinoController {
         }
 
         // Move Down
-        if (KeyHandler.downPressed) {
+        if (KeyHandler.downPressed && !result.bottom) {
             for (Block block : currentMino.b) {
                 block.y += Block.SIZE;
             }
@@ -24,7 +28,7 @@ public class MinoController {
         }
 
         // Move Left
-        if (KeyHandler.leftPressed) {
+        if (KeyHandler.leftPressed && !result.left) {
             for (Block block : currentMino.b) {
                 block.x -= Block.SIZE;
             }
@@ -32,7 +36,7 @@ public class MinoController {
         }
 
         // Move Right
-        if (KeyHandler.rightPressed) {
+        if (KeyHandler.rightPressed && !result.right) {
             for (Block block : currentMino.b) {
                 block.x += Block.SIZE;
             }

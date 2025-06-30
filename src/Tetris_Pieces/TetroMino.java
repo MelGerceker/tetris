@@ -19,6 +19,10 @@ public abstract class TetroMino {
 
     public int direction = 1; // 4 directions
 
+    public boolean leftCollision;
+    boolean rightCollision;
+    boolean bottomCollision;
+
     public TetroMino() {
 
         // Logic of offset = Point (x,y)
