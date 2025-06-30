@@ -77,13 +77,15 @@ public class PlayAreaManager {
                 mino = new Mino_T();
                 break;
             // case 6: mino = new Mino_L2(); break;
+            default:
+                break;
 
         }
         return mino;
     }
 
     public void update() {
-        MinoController.handleInput(currentMino);
+        KeyController.handleInput(currentMino);
         currentMino.updateAutoDrop(); // NEW
     }
 
@@ -107,6 +109,15 @@ public class PlayAreaManager {
         // Draw the currentMino
         if (currentMino != null) {
             currentMino.draw(g2);
+        }
+
+        // Draw Pause
+        g2.setColor(Color.MAGENTA);
+        g2.setFont(g2.getFont().deriveFont(50f));
+        if (KeyHandler.pausePressed) {
+            x = left_x + 70;
+            y = top_y + 320;
+            g2.drawString("Paused", x, y);
         }
 
     }

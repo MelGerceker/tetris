@@ -3,7 +3,7 @@ package src;
 import src.Tetris_Pieces.Block;
 import src.Tetris_Pieces.TetroMino;
 
-public class MinoController {
+public class KeyController {
 
     public static void handleInput(TetroMino currentMino) {
 
