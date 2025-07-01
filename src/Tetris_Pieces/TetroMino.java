@@ -26,7 +26,7 @@ public abstract class TetroMino {
 
     public boolean active = true;
     // public int lockCounter = 0;
-    public static final int LOCK_DELAY = 60;
+    public static final int LOCK_DELAY = 45;
 
     public boolean deactivating;
     public int deactivateCounter = 0;

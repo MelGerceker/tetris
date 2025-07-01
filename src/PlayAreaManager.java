@@ -38,6 +38,7 @@ public class PlayAreaManager {
     public static ArrayList<Block> staticBlocks = new ArrayList<>();
 
     public static int dropInterval = 60;
+    boolean gameOver;
 
     public PlayAreaManager() {
 
@@ -102,6 +103,11 @@ public class PlayAreaManager {
             staticBlocks.add(currentMino.b[2]);
             staticBlocks.add(currentMino.b[3]);
 
+            // check if the game is over
+            if (currentMino.b[0].x == MINO_START_X && currentMino.b[0].y == MINO_START_Y) {
+                gameOver = true;
+            }
+
             currentMino = nextMino;
             currentMino.setXY(MINO_START_X, MINO_START_Y);
             nextMino = pickRandom();
@@ -115,7 +121,7 @@ public class PlayAreaManager {
 
             LineClearer.clearFullLines(staticBlocks, left_x, right_x, top_y, bottom_y);
         }
-    }  
+    }
 
     public void draw(Graphics2D g2) {
 
@@ -147,10 +153,16 @@ public class PlayAreaManager {
             staticBlocks.get(i).draw(g2);
         }
 
-        // Draw Pause
-        g2.setColor(Color.MAGENTA);
+        g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(50f));
-        if (KeyHandler.pausePressed) {
+        // Draw Game over
+        if (gameOver) {
+            x = left_x + 70;
+            y = top_y + 320;
+            g2.drawString("Game Over", x, y);
+
+        } else if (KeyHandler.pausePressed) {
+            // Draw Pause
             x = left_x + 70;
             y = top_y + 320;
             g2.drawString("Paused", x, y);
