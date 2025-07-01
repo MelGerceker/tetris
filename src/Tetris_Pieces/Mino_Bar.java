@@ -19,6 +19,9 @@ public class Mino_Bar extends TetroMino {
         offsets[1] = new Point(0, -1);
         offsets[2] = new Point(0, 1);
         offsets[3] = new Point(0, 2);
+
+        setXY(anchorX, anchorY); // apply new positions
+
     }
 
     @Override
