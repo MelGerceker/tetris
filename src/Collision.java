@@ -8,14 +8,6 @@ import src.Tetris_Pieces.Block;
 
 public class Collision {
 
-    // private TetroMino mino;
-    // private PlayAreaManager manager;
-    /*
-     * public Collision(TetroMino mino) {
-     * this.mino = mino;
-     * }
-     */
-
     public CollisionResult checkMovementCollision(TetroMino mino) {
 
         CollisionResult result = new CollisionResult();
@@ -48,10 +40,8 @@ public class Collision {
         CollisionResult result = new CollisionResult();
 
         checkStaticBlockCollision(mino, result);
-        
-        for (Point p : testPositions) {
 
-            // checkStaticBlockCollision();
+        for (Point p : testPositions) {
 
             if (p.x < PlayAreaManager.left_x
                     || p.x + Block.SIZE > PlayAreaManager.right_x
@@ -70,15 +60,13 @@ public class Collision {
             int targetX = PlayAreaManager.staticBlocks.get(i).x;
             int targetY = PlayAreaManager.staticBlocks.get(i).y;
 
-            if (mino == null) {
-                System.out.println("ERROR: mino is null in checkStaticBlockCollision!");
-                return;
-            }
-
-            if (mino.b == null) {
-                System.out.println("ERROR: mino.b is null in checkStaticBlockCollision!");
-                return;
-            }
+            /*
+             * For debugging:
+             * if (mino == null) {
+             * System.out.println("ERROR: mino is null in checkStaticBlockCollision!");
+             * return;
+             * }
+             */
 
             for (Block b : mino.b) {
 

@@ -111,7 +111,7 @@ public class PlayAreaManager {
 
             KeyController.handleInput(currentMino);
             currentMino.updateAutoDrop();
-
+            currentMino.updateLockDelay(); 
         }
     }
 

@@ -15,6 +15,7 @@ public class KeyController {
             currentMino.anchorX = currentMino.b[0].x;
             currentMino.anchorY = currentMino.b[0].y;
             currentMino.rotateRight();
+
             KeyHandler.upPressed = false;
         }
 
@@ -24,6 +25,7 @@ public class KeyController {
                 block.y += Block.SIZE;
             }
             currentMino.autoDropCounter = 0;
+
             KeyHandler.downPressed = false;
         }
 
@@ -32,6 +34,7 @@ public class KeyController {
             for (Block block : currentMino.b) {
                 block.x -= Block.SIZE;
             }
+
             KeyHandler.leftPressed = false;
         }
 
@@ -40,6 +43,8 @@ public class KeyController {
             for (Block block : currentMino.b) {
                 block.x += Block.SIZE;
             }
+            //currentMino.deactivateCounter = 0; // Cancel lock delay
+
             KeyHandler.rightPressed = false;
         }
     }

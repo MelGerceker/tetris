@@ -6,7 +6,6 @@ import java.awt.Point;
 
 import src.Collision;
 import src.CollisionResult;
-import src.KeyHandler;
 import src.PlayAreaManager;
 
 public abstract class TetroMino {
@@ -26,6 +25,11 @@ public abstract class TetroMino {
     boolean bottomCollision;
 
     public boolean active = true;
+    // public int lockCounter = 0;
+    public static final int LOCK_DELAY = 60;
+
+    public boolean deactivating;
+    public int deactivateCounter = 0;
 
     public TetroMino() {
 
@@ -77,11 +81,8 @@ public abstract class TetroMino {
         }
 
         // Check if simulated position collides
-        // Collision tempCollision = new Collision(null);
+
         Collision tempCollision = new Collision();
-
-        // if (tempCollision.checkRotationalCollision(simulated)) {
-
         if (tempCollision.checkRotationalCollision(this, simulated)) {
 
             // Revert collision
@@ -136,12 +137,26 @@ public abstract class TetroMino {
                 for (Block block : b) {
                     block.y += Block.SIZE;
                 }
-            } else {
-                active = false;
             }
             autoDropCounter = 0;
+
         }
     }
+
+    public void updateLockDelay() {
+        Collision collision = new Collision();
+        CollisionResult result = collision.checkMovementCollision(this);
+
+        if (result.bottom) {
+            deactivateCounter++;
+            if (deactivateCounter >= LOCK_DELAY) {
+                active = false;
+            }
+        } else {
+            deactivateCounter = 0; // reset if not touching
+        }
+    }
+
 
     public void draw(Graphics2D g2) {
         int margin = 2;
