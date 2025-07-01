@@ -111,7 +111,49 @@ public class PlayAreaManager {
 
             KeyController.handleInput(currentMino);
             currentMino.updateAutoDrop();
-            currentMino.updateLockDelay(); 
+            currentMino.updateLockDelay();
+
+            // here?
+            lineClearence();
+        }
+    }
+
+    private void lineClearence() {
+        int x = left_x;
+        int y = top_y;
+        int blockCount = 0;
+
+        while (x < right_x && y < bottom_y) {
+
+            for (int i = 0; i < staticBlocks.size(); i++) {
+                if (staticBlocks.get(i).x == x && staticBlocks.get(i).y == y) {
+                    blockCount++;
+                }
+            }
+
+            x += Block.SIZE;
+
+            if (x == right_x) {
+                if (blockCount == 12) {
+                    for (int i = staticBlocks.size() - 1; i > -1; i--) {
+                        // delete lines
+                        if (staticBlocks.get(i).y == y) {
+                            staticBlocks.remove(i);
+                        }
+                    }
+
+                    // slide down blocks accordingly
+                    for (int i = 0; i < staticBlocks.size(); i++) {
+                        if (staticBlocks.get(i).y < y) {
+                            staticBlocks.get(i).y += Block.SIZE;
+                        }
+                    }
+
+                }
+                blockCount = 0;
+                x = left_x;
+                y += Block.SIZE;
+            }
         }
     }
 
