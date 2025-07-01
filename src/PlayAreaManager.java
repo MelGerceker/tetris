@@ -37,8 +37,10 @@ public class PlayAreaManager {
     final int NEXTMINO_Y;
     public static ArrayList<Block> staticBlocks = new ArrayList<>();
 
-    public static int dropInterval = 60;
+    // public static int dropInterval = 60;
     boolean gameOver;
+
+    GameScore gameScore = new GameScore();
 
     public PlayAreaManager() {
 
@@ -108,6 +110,9 @@ public class PlayAreaManager {
                 gameOver = true;
             }
 
+            int linesCleared = LineClearer.clearFullLines(staticBlocks, left_x, right_x, top_y, bottom_y);
+            gameScore.updateAfterLineClear(linesCleared);
+
             currentMino = nextMino;
             currentMino.setXY(MINO_START_X, MINO_START_Y);
             nextMino = pickRandom();
@@ -116,10 +121,10 @@ public class PlayAreaManager {
         } else {
 
             KeyController.handleInput(currentMino);
-            currentMino.updateAutoDrop();
+            currentMino.updateAutoDrop(gameScore.getDropInterval());
             currentMino.updateLockDelay();
 
-            LineClearer.clearFullLines(staticBlocks, left_x, right_x, top_y, bottom_y);
+            //LineClearer.clearFullLines(staticBlocks, left_x, right_x, top_y, bottom_y);
         }
     }
 
@@ -139,6 +144,16 @@ public class PlayAreaManager {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.drawString("NEXT", x + 60, y + 60);
+
+        // Draw Score Frame
+        g2.drawRect(x, top_y, 250, 300);
+        x += 40;
+        y = top_y + 90;
+        g2.drawString("LEVEL: " + gameScore.getLevel(), x, y);
+        y += 70;
+        g2.drawString("LINES: " + gameScore.getLines(), x, y);
+        y += 70;
+        g2.drawString("SCORE: " + gameScore.getScore(), x, y);
 
         // Draw the currentMino
         if (currentMino != null) {

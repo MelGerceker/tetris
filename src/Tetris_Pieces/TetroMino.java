@@ -124,10 +124,10 @@ public abstract class TetroMino {
 
     protected abstract void setDirection4();
 
-    public void updateAutoDrop() {
+    public void updateAutoDrop(int dropInterval) {
         autoDropCounter++;
 
-        if (autoDropCounter >= PlayAreaManager.dropInterval) {
+        if (autoDropCounter >= dropInterval) {
 
             // Check for bottom collision
             Collision collision = new Collision();
