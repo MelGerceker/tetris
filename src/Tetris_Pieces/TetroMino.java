@@ -77,8 +77,12 @@ public abstract class TetroMino {
         }
 
         // Check if simulated position collides
-        Collision tempCollision = new Collision(null);
-        if (tempCollision.checkRotationalCollision(simulated)) {
+        // Collision tempCollision = new Collision(null);
+        Collision tempCollision = new Collision();
+
+        // if (tempCollision.checkRotationalCollision(simulated)) {
+
+        if (tempCollision.checkRotationalCollision(this, simulated)) {
 
             // Revert collision
             direction = previousDirection;
@@ -125,7 +129,7 @@ public abstract class TetroMino {
         if (autoDropCounter >= PlayAreaManager.dropInterval) {
 
             // Check for bottom collision
-            Collision collision = new Collision(this);
+            Collision collision = new Collision();
             CollisionResult result = collision.checkMovementCollision(this);
 
             if (!result.bottom) {
@@ -133,7 +137,6 @@ public abstract class TetroMino {
                     block.y += Block.SIZE;
                 }
             } else {
-                // TODO: lock piece here
                 active = false;
             }
             autoDropCounter = 0;

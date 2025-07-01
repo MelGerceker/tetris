@@ -19,23 +19,10 @@ public class Mino_L1 extends TetroMino {
         offsets[1] = new Point(0, -1); // above
         offsets[2] = new Point(0, 1); // below
         offsets[3] = new Point(1, 1); // bottom-right
-    }
 
-    /*
-     * public void getDirection1() {
-     * 
-     * // [1]
-     * // [0]
-     * // [2][3]
-     * 
-     * offsets[0] = new Point(0, 0); // anchor
-     * offsets[1] = new Point(0, -1);
-     * offsets[2] = new Point(0, 1);
-     * offsets[3] = new Point(1, 1);
-     * 
-     * setXY(anchorX, anchorY); // apply new positions
-     * }
-     */
+        setXY(anchorX, anchorY); // apply new positions
+
+    }
 
     @Override
     protected void setDirection1() {

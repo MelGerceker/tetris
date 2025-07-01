@@ -18,6 +18,8 @@ public class Mino_T extends TetroMino {
         offsets[1] = new Point(0, -1);
         offsets[2] = new Point(-1, 0);
         offsets[3] = new Point(1, 0);
+        setXY(anchorX, anchorY); // apply new positions
+
     }
 
     @Override

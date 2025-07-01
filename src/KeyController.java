@@ -7,7 +7,7 @@ public class KeyController {
 
     public static void handleInput(TetroMino currentMino) {
 
-        Collision collision = new Collision(currentMino);
+        Collision collision = new Collision();
         CollisionResult result = collision.checkMovementCollision(currentMino);
 
         // Rotate

@@ -8,12 +8,13 @@ import src.Tetris_Pieces.Block;
 
 public class Collision {
 
-    private TetroMino mino;
+    // private TetroMino mino;
     // private PlayAreaManager manager;
-
-    public Collision(TetroMino mino) {
-        this.mino = mino;
-    }
+    /*
+     * public Collision(TetroMino mino) {
+     * this.mino = mino;
+     * }
+     */
 
     public CollisionResult checkMovementCollision(TetroMino mino) {
 
@@ -42,11 +43,12 @@ public class Collision {
         return result;
     }
 
-    public boolean checkRotationalCollision(Point[] testPositions) {
+    public boolean checkRotationalCollision(TetroMino mino, Point[] testPositions) {
 
         CollisionResult result = new CollisionResult();
 
         checkStaticBlockCollision(mino, result);
+        
         for (Point p : testPositions) {
 
             // checkStaticBlockCollision();
@@ -68,33 +70,13 @@ public class Collision {
             int targetX = PlayAreaManager.staticBlocks.get(i).x;
             int targetY = PlayAreaManager.staticBlocks.get(i).y;
 
-            /*
-             * // check down
-             * for (int j = 0; j < mino.b.length; j++) {
-             * System.out.println("DEBUG: b[j] is " + mino.b[j]);
-             * 
-             * if (mino.b[j].y + Block.SIZE == targetY && mino.b[j].x == targetX) {
-             * result.bottom = true;
-             * }
-             * }
-             * 
-             * // check left
-             * for (int j = 0; j < mino.b.length; j++) {
-             * if (mino.b[j].x - Block.SIZE == targetX && mino.b[j].y == targetY) {
-             * result.left = true;
-             * }
-             * }
-             * 
-             * // check right
-             * for (int j = 0; j < mino.b.length; j++) {
-             * if (mino.b[j].x + Block.SIZE == targetX && mino.b[j].y == targetY) {
-             * result.right = true;
-             * }
-             * }
-             */
+            if (mino == null) {
+                System.out.println("ERROR: mino is null in checkStaticBlockCollision!");
+                return;
+            }
 
-            if (mino == null || mino.b == null) {
-                System.out.println("ERROR: mino or mino.b is null in checkStaticBlockCollision!");
+            if (mino.b == null) {
+                System.out.println("ERROR: mino.b is null in checkStaticBlockCollision!");
                 return;
             }
 
