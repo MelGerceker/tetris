@@ -1,4 +1,4 @@
-package src;
+package swing_version;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

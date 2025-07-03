@@ -1,4 +1,4 @@
-package src.Tetris_Pieces;
+package swing_version.Tetris_Pieces;
 
 import java.awt.Color;
 import java.awt.Point;

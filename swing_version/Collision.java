@@ -1,10 +1,8 @@
-package src;
-
-import src.Tetris_Pieces.TetroMino;
+package swing_version;
 
 import java.awt.Point;
-
-import src.Tetris_Pieces.Block;
+import swing_version.Tetris_Pieces.Block;
+import swing_version.Tetris_Pieces.TetroMino;
 
 public class Collision {
 

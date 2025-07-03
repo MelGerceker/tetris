@@ -1,7 +1,7 @@
-package src;
+package swing_version;
 
 import java.util.ArrayList;
-import src.Tetris_Pieces.Block;
+import swing_version.Tetris_Pieces.Block;
 
 public class LineClearer {
 

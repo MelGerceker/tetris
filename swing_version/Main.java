@@ -1,4 +1,4 @@
-package src;
+package swing_version;
 
 import javax.swing.JFrame;
 

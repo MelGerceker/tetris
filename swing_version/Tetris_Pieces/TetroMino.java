@@ -1,12 +1,10 @@
-package src.Tetris_Pieces;
+package swing_version.Tetris_Pieces;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
-
-import src.Collision;
-import src.CollisionResult;
-import src.PlayAreaManager;
+import swing_version.Collision;
+import swing_version.CollisionResult;
 
 public abstract class TetroMino {
 

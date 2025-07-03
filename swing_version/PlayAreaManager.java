@@ -1,4 +1,4 @@
-package src;
+package swing_version;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -8,15 +8,15 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.Random;
 
-import src.Tetris_Pieces.Block;
-import src.Tetris_Pieces.Mino_Bar;
-import src.Tetris_Pieces.Mino_L1;
-import src.Tetris_Pieces.Mino_L2;
-import src.Tetris_Pieces.Mino_Square;
-import src.Tetris_Pieces.Mino_T;
-import src.Tetris_Pieces.Mino_Z1;
-import src.Tetris_Pieces.Mino_Z2;
-import src.Tetris_Pieces.TetroMino;
+import swing_version.Tetris_Pieces.Block;
+import swing_version.Tetris_Pieces.Mino_Bar;
+import swing_version.Tetris_Pieces.Mino_L1;
+import swing_version.Tetris_Pieces.Mino_L2;
+import swing_version.Tetris_Pieces.Mino_Square;
+import swing_version.Tetris_Pieces.Mino_T;
+import swing_version.Tetris_Pieces.Mino_Z1;
+import swing_version.Tetris_Pieces.Mino_Z2;
+import swing_version.Tetris_Pieces.TetroMino;
 
 public class PlayAreaManager {
 

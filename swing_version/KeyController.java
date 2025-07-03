@@ -1,7 +1,7 @@
-package src;
+package swing_version;
 
-import src.Tetris_Pieces.Block;
-import src.Tetris_Pieces.TetroMino;
+import swing_version.Tetris_Pieces.Block;
+import swing_version.Tetris_Pieces.TetroMino;
 
 public class KeyController {
 
